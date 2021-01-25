@@ -397,7 +397,7 @@ const applyWithDispatch = withDispatch( ( dispatch, ownProps, { select } ) => {
 				}
 			}
 		},
-		onReplace( blocks, indexToSelect, initialPosition ) {
+		onReplace( blocks, indexToSelect, initialPosition = 0 ) {
 			if (
 				blocks.length &&
 				! isUnmodifiedDefaultBlock( blocks[ blocks.length - 1 ] )
@@ -408,7 +408,7 @@ const applyWithDispatch = withDispatch( ( dispatch, ownProps, { select } ) => {
 				[ ownProps.clientId ],
 				blocks,
 				indexToSelect,
-				initialPosition || 0
+				initialPosition
 			);
 		},
 		toggleSelection( selectionEnabled ) {
