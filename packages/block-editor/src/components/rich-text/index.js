@@ -296,6 +296,10 @@ function RichTextWrapper(
 			const hasPastedBlocks = pastedBlocks.length > 0;
 			let lastPastedBlockIndex = -1;
 
+			// Consider the after value to bethe original it is not empty and
+			// the
+			const isAfterOriginal = isEmpty( before ) && ! isEmpty( after );
+
 			// Create a block with the content before the caret if there's no pasted
 			// blocks, or if there are pasted blocks and the value is not empty.
 			// We do not want a leading empty block on paste, but we do if split
@@ -306,7 +310,8 @@ function RichTextWrapper(
 						toHTMLString( {
 							value: before,
 							multilineTag,
-						} )
+						} ),
+						! isAfterOriginal
 					)
 				);
 				lastPastedBlockIndex += 1;
@@ -333,7 +338,8 @@ function RichTextWrapper(
 						toHTMLString( {
 							value: after,
 							multilineTag,
-						} )
+						} ),
+						isAfterOriginal
 					)
 				);
 			}
