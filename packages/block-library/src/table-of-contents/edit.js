@@ -50,8 +50,14 @@ export default function TableOfContentsEdit( {
 		[]
 	);
 
+	// The page this block would be part of on the front-end. For performance
+	// reasons, this is only calculated when onlyIncludeCurrentPage is true.
 	const pageIndex = useSelect(
 		( select ) => {
+			if ( ! onlyIncludeCurrentPage ) {
+				return null;
+			}
+
 			const {
 				getBlockAttributes,
 				getBlockIndex,
